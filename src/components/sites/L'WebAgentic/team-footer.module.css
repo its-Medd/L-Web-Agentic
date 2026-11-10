@@ -1,0 +1,420 @@
+.team {
+  position: relative;
+}
+
+.teamWrapper {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  position: relative;
+}
+
+.teamTitle {
+  position: absolute;
+  top: 1.5em;
+  left: 0;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+  text-align: center;
+}
+
+.teamList {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+  gap: 1em;
+}
+
+.teamItem:nth-child(1) { grid-row: 1; }
+.teamItem:nth-child(2),
+.teamItem:nth-child(3) { grid-row: 2; }
+.teamItem:nth-child(4) { grid-row: 3; }
+.teamItem:nth-child(5) { grid-row: 4; }
+.teamItem:nth-child(6) { grid-row: 5; }
+
+.teamItem:nth-child(4n + 1) { grid-column: 3; transform: translateX(1em); }
+.teamItem:nth-child(4n + 2) { grid-column: 1; transform: translateY(-2em); }
+.teamItem:nth-child(4n + 3) { grid-column: 3; margin: 2em 0 -2em; transform: translateY(2em); }
+.teamItem:nth-child(4n + 4) { grid-column: 1; margin-bottom: -2em; }
+
+.teamCard {
+  width: 40vw;
+}
+
+.teamImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.portrait {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sticker {
+  display: block;
+  height: auto;
+  position: absolute;
+  pointer-events: none;
+}
+
+.stickerOne {
+  z-index: 2;
+  width: 6em;
+  top: -3em;
+  right: -5em;
+  transform: rotate(4deg);
+}
+
+.stickerTwo {
+  width: 8em;
+  top: 174vw;
+  left: 0;
+  transform: rotate(-10deg);
+}
+
+.stickerThree {
+  width: 7em;
+  top: 100vw;
+  right: -1em;
+}
+
+.teamLink {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1.125);
+}
+
+.footer {
+  z-index: 1;
+  position: relative;
+  background: var(--ef-ink);
+  color: var(--ef-paper);
+}
+
+.footerCta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8em 0;
+  border-bottom: 1px solid #f4f4f433;
+  text-align: center;
+  overflow: hidden;
+}
+
+.trailArea {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  max-width: 80em;
+}
+
+.ctaCopy {
+  opacity: 1;
+}
+
+.ctaButton {
+  display: flex;
+  justify-content: center;
+}
+
+.trailSticker {
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12em;
+  max-height: 10em;
+  object-fit: contain;
+  pointer-events: none;
+  will-change: transform;
+  transform-origin: 50% 55%;
+  animation: sticker-trail 2.45s cubic-bezier(.16,.78,.28,1) forwards;
+}
+
+@keyframes sticker-trail {
+  0% { opacity: 0; transform: translate(var(--trail-x), var(--trail-y)) translate(-50%, -50%) rotate(calc(var(--trail-rotation) - var(--trail-twist))) scale(.45); }
+  12% { opacity: 1; transform: translate(calc(var(--trail-x) + var(--trail-wander-x)), calc(var(--trail-y) + var(--trail-wander-y))) translate(-50%, -50%) rotate(calc(var(--trail-rotation) + var(--trail-twist))) scale(1.12); }
+  30% { opacity: 1; transform: translate(calc(var(--trail-x) + var(--trail-wander-x)), calc(var(--trail-y) + var(--trail-wander-y))) translate(-50%, -50%) rotate(calc(var(--trail-rotation) + var(--trail-twist))) scale(.98); }
+  53% { opacity: 1; transform: translate(calc(var(--trail-x) + var(--trail-drift-x)), calc(var(--trail-y) + var(--trail-drift-y))) translate(-50%, -50%) rotate(calc(var(--trail-rotation) - var(--trail-twist))) scale(1.03); }
+  76% { opacity: .86; transform: translate(calc(var(--trail-x) + var(--trail-drift-x)), calc(var(--trail-y) + var(--trail-drift-y))) translate(-50%, -50%) rotate(calc(var(--trail-rotation) - var(--trail-twist))) scale(.94); }
+  100% { opacity: 0; transform: translate(calc(var(--trail-x) + var(--trail-drift-x)), calc(var(--trail-y) + var(--trail-drift-y))) translate(-50%, -50%) rotate(calc(var(--trail-rotation) + var(--trail-twist))) scale(.56); }
+}
+
+.footerMain {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+  padding: 5em 0 2em;
+}
+
+.footerMainLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 5em;
+}
+
+.footerLogo {
+  display: flex;
+  width: 100%;
+  max-width: 24em;
+}
+
+.footerLogo :global(.ef-brand-mark) {
+  color: var(--ef-paper);
+  font-size: 5em;
+}
+
+.logoImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footerColumns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  width: 100%;
+}
+
+.footerColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  min-width: 0;
+}
+
+.socialColumn {
+  margin-left: auto;
+}
+
+.columnHeading {
+  font-family: "Helvetica Now", Arial, sans-serif;
+  font-size: 1.25em;
+  line-height: 0.9;
+  font-weight: 700;
+  font-variation-settings: "wght" 700, "wdth" 75, "opsz" 30;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactLinks {
+  gap: 0.5em;
+}
+
+.footerLink,
+.bottomLink {
+  align-self: flex-start;
+  font-family: "Serrif", Arial, sans-serif;
+  font-variation-settings: "wght" 500;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  text-decoration: none;
+  transition: opacity 100ms ease;
+}
+
+.footerLink {
+  font-size: 1.125em;
+  transform: translateY(0.25em);
+}
+
+.footerLink::after,
+a.bottomLink::after {
+  content: "";
+  display: block;
+  height: 0.5em;
+  width: 100%;
+  background: var(--ef-pink);
+  mask: url("/sites/extrafazant/underline-1-white.svg") center / 100% 100% no-repeat;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 250ms ease, opacity 100ms ease;
+}
+
+.footerLink:hover,
+.footerLink:focus-visible,
+.bottomLink:hover,
+.bottomLink:focus-visible {
+  opacity: 1;
+}
+
+.footerLink:hover::after,
+.footerLink:focus-visible::after,
+a.bottomLink:hover::after,
+a.bottomLink:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.address {
+  line-height: 1.2;
+}
+
+.backTop {
+  position: absolute;
+  top: -3.5em;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  background: #fff3;
+  overflow: hidden;
+  transition: background 200ms ease;
+}
+
+.backTop :global(.ef-arrow) {
+  position: relative;
+  z-index: 1;
+  width: 0.75em;
+  height: auto;
+}
+
+.backTop:hover,
+.backTop:focus-visible {
+  background: var(--ef-pink);
+}
+
+.backTop:hover :global(.ef-arrow),
+.backTop:focus-visible :global(.ef-arrow) {
+  filter: brightness(0);
+}
+
+.footerBottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2em;
+  padding: 1em 0;
+  border-top: 1px solid #f4f4f433;
+}
+
+.bottomLink {
+  font-size: 1em;
+  transform: translateY(0.25em);
+}
+
+.legalLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.credit {
+  margin-left: auto;
+}
+
+@media (min-width: 480px) {
+  .teamTitle {
+    top: 6em;
+    width: 55%;
+    gap: 1em;
+  }
+
+  .teamCard { width: 36vw; }
+  .teamItem:nth-child(4n + 1) { transform: translateX(4em); }
+  .teamItem:nth-child(4n + 2) { transform: translate(2em, -4em); }
+  .teamItem:nth-child(4n + 3) { margin: 4em 0 -4em; transform: translateY(4em); }
+  .teamItem:nth-child(4n + 4) { margin-bottom: -4em; transform: translate(2em, 8em); }
+
+  .stickerOne { width: 8em; top: -6em; left: 0; right: auto; transform: rotate(-10deg); }
+  .stickerTwo { width: 10em; top: 125vw; left: 13em; }
+  .stickerThree { width: 9em; top: 90vw; right: 2em; }
+
+  .teamLink {
+    position: absolute;
+    right: 0;
+    bottom: 8em;
+  }
+
+  .footerCta { padding: 12em 0; }
+  .footerMain { flex-direction: row; justify-content: space-between; gap: 1em; padding: 5em 0; }
+  .socialColumn { margin-left: 0; }
+  .footerMainLogo { width: 30%; padding: 0; }
+  .footerColumns { display: flex; justify-content: space-between; gap: 0; width: 60%; }
+  .backTop { position: relative; top: auto; right: auto; flex: none; }
+  .footerBottom { display: flex; justify-content: flex-start; gap: 0; }
+  .bottomLink { font-size: 0.875em; transform: none; }
+  .copyright { width: 40%; }
+  .legalLinks { flex-direction: row; gap: 2em; }
+}
+
+@media (min-width: 768px) {
+  .teamTitle { top: 12em; }
+  .stickerTwo { top: 80em; left: 20em; }
+  .stickerThree { top: 60em; }
+  .teamLink { bottom: 12em; }
+  .footerCta { padding: 16em 0; }
+  .footerLogo { max-width: 28em; }
+  .footerColumns { width: 55%; }
+  .footerLink { font-size: 1.25em; transform: none; }
+  .copyright { width: 45%; }
+  .legalLinks { gap: 3em; }
+}
+
+@media (min-width: 992px) {
+  .teamWrapper { gap: 3em; }
+  .teamTitle { width: 70%; }
+  .teamList { gap: 2em; }
+  .teamCard { width: 34em; }
+  .teamItem:nth-child(4n + 1) { transform: translateX(16em); }
+  .teamItem:nth-child(4n + 2) { transform: translate(8em, -8em); }
+  .teamItem:nth-child(4n + 3) { margin: 8em 0 -8em; transform: translateY(8em); }
+  .teamItem:nth-child(4n + 4) { margin-bottom: -8em; transform: translate(2em, 8em); }
+  .stickerOne { width: 12em; top: -8em; left: 10em; }
+  .stickerTwo { width: 14em; top: 128em; left: 28em; }
+  .stickerThree { width: 12em; top: 96em; right: 16em; }
+  .teamLink { width: auto; bottom: 16em; right: 44em; transform: scale(1.5); }
+  .footerCta { padding: 20em 0; }
+  .footerMain { gap: 2em; }
+  .footerMainLogo { width: 40%; padding: 0 4em; }
+  .footerColumns { width: 50%; }
+  .footerColumn { gap: 1em; }
+  .columnHeading { font-size: 1.5em; }
+  .footerLink { font-size: 1.5em; }
+  .bottomLink { font-size: 1.125em; }
+  .copyright { width: 50%; }
+  .legalLinks { gap: 4em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footerLink,
+  .bottomLink,
+  .footerLink::after,
+  a.bottomLink::after,
+  .backTop { transition: none; }
+  .trailSticker { display: none; }
+}

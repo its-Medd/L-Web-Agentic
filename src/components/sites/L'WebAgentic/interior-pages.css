@@ -1,0 +1,228 @@
+/* Scoped to the interior pages; homepage layout and motion stay independent. */
+.ef-subsite { background:var(--ef-paper); }
+.ef-subsite .ef-desktop-links a[aria-current="page"]::after { opacity:1; }
+.ef-subsite .ef-mobile-links a[aria-current="page"] { color:var(--ef-pink); }
+.ef-subsite main:focus { outline:none; }
+.ef-subsite .ef-inner-page { padding:0; }
+.ef-subsite .ef-reveal-word { display:inline-block; white-space:pre; overflow:clip; vertical-align:top; padding-block:.12em; margin-block:-.12em; }
+.ef-subsite .ef-letter { display:inline-block; }
+.ef-subsite .ef-page-intro { padding:12em 2em 4em; text-align:center; }
+.ef-subsite .ef-page-intro-content { display:flex; flex-direction:column; align-items:center; gap:2em; position:relative; z-index:2; }
+.ef-subsite .ef-page-lead { display:flex; flex-direction:column; align-items:center; gap:1.5em; font-family:"Serrif",serif; font-size:2.5em; line-height:1; max-width:20em; }
+.ef-subsite .ef-page-lead .ef-text-link { font-size:.7em; }
+.ef-subsite .ef-page-intro .ef-heading-xl { max-width:10em; }
+.ef-subsite .ef-about-page .ef-page-intro { min-height:81svh; display:flex; align-items:center; justify-content:center; padding-top:20em; }
+.ef-subsite .ef-about-page .ef-page-intro h1,.ef-subsite .ef-services-hero h1 { font-size:12em; }
+.ef-about-team { display:grid; grid-template-columns:1fr 1fr; gap:4em 9em; padding:8em 8em 12em; align-items:start; }
+.ef-about-team-title { align-self:start; text-align:center; position:relative; padding-top:10em; }
+.ef-about-team-title h2 { margin-top:.2em; }
+.ef-about-sticker { position:absolute; width:12em; height:auto; top:0; left:4em; rotate:-12deg; }
+.ef-person { width:100%; max-width:38em; margin-inline:auto; }
+.ef-person:nth-of-type(even) { margin-top:14em; }
+.ef-person-image { aspect-ratio:4/5; overflow:hidden; }
+.ef-person-image img { width:100%; height:100%; object-fit:cover; }
+.ef-person-caption { text-align:center; padding:1em .5em; }
+.ef-person-caption h3 { font-size:2em; text-transform:uppercase; font-variation-settings:"wght" 700,"wdth" 75; line-height:1.1; }
+.ef-person-caption p { font:500 2em/1.05 "Serrif",serif; margin-top:.25em; }
+
+.ef-subsite .ef-work-page .ef-page-intro h1 { max-width:6.25em; }
+.ef-work-grid { padding:0 6.8em 12em; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4em 2em; align-items:start; }
+.ef-work-tile { min-width:0; display:block; position:relative; }
+.ef-work-grid > :nth-child(3n + 1),.ef-work-grid > :nth-child(3n) { margin-top:8em; }
+.ef-work-card { padding:1.5em; position:relative; background:white; transition:transform .6s cubic-bezier(.2,.75,.15,1); }
+.ef-work-image { display:block; overflow:hidden; aspect-ratio:4/5; }
+.ef-work-image img { width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.75,.15,1); }
+.ef-work-tile-copy { display:flex; flex-direction:column; align-items:center; text-align:center; padding-top:1em; gap:.3em; }
+.ef-work-tile-copy strong { font-size:4em; font-variation-settings:"wght" 700,"wdth" 75; text-transform:uppercase; line-height:.9; letter-spacing:-.04em; }
+.ef-work-tile-copy small { font:500 2.5em/1 "Serrif",serif; }
+.ef-work-open { position:absolute; right:2em; top:2em; background:var(--ef-blue); color:white; width:3em; height:3em; display:grid; place-items:center; opacity:0; transform:translateY(12px) rotate(-30deg); transition:transform .4s,opacity .4s; }
+.ef-work-open svg { width:1.7em; height:1.7em; }
+@media (hover:hover) {
+  .ef-work-tile:hover .ef-work-card { transform:rotate(-2deg) translateY(-6px); }
+  .ef-work-tile:hover img { transform:scale(1.035); }
+}
+.ef-work-tile:is(:hover,:focus-visible) .ef-work-open { transform:none; opacity:1; }
+
+.ef-services-hero { min-height:100svh; position:relative; isolation:isolate; }
+.ef-subsite .ef-services-hero .ef-page-intro { min-height:100svh; padding:0 2em; display:flex; justify-content:center; align-items:center; }
+.ef-services-hero .ef-page-lead { max-width:17em; }
+.ef-orbit { position:absolute; inset:0; pointer-events:none; z-index:0; }
+.ef-orbit-item { position:absolute; top:calc(50% + sin(var(--orbit-index) * 30deg) * 39%); left:calc(50% + cos(var(--orbit-index) * 30deg) * 42%); width:9.6em; height:9.6em; transform:translate(-50%,-50%); }
+.ef-orbit-item img { width:100%; height:100%; object-fit:contain; }
+.ef-services-statement { padding:14em 2em 16em; display:flex; flex-direction:column; align-items:center; text-align:center; gap:1.5em; }
+.ef-services-statement > p:first-child { font:500 4em/.92 "Serrif",serif; max-width:15em; }
+.ef-services-statement .ef-copy { max-width:24em; }
+.ef-service-detail { display:grid; grid-template-columns:1fr 1fr; min-height:110svh; }
+.ef-service-detail-copy { display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:2em; padding:8em 5em; }
+.ef-service-detail-copy .ef-eyebrow { font-size:2.2em; }
+.ef-service-detail-copy .ef-copy { max-width:31em; }
+.ef-service-sticker { width:13em; height:9em; object-fit:contain; align-self:flex-start; margin-bottom:2em; }
+.ef-service-detail-image { min-width:0; min-height:100svh; background:var(--ef-blue); perspective:1200px; }
+.ef-detail-video .ef-service-detail-image { background:var(--ef-pink); }
+.ef-detail-social .ef-service-detail-image { background:var(--ef-orange); }
+.ef-service-film-wrap { height:100svh; position:sticky; top:0; display:flex; justify-content:center; align-items:center; padding:6em; }
+.ef-service-film { width:100%; max-width:38em; position:relative; aspect-ratio:4/5; }
+.ef-service-film video { width:100%; height:100%; object-fit:cover; }
+.ef-film-control { position:absolute; bottom:1em; right:1em; background:var(--ef-paper); padding:.6em 1em; font-size:1.1em; text-transform:uppercase; }
+
+.ef-contact-hero { display:grid; grid-template-columns:4fr 5fr; min-height:100svh; }
+.ef-contact-intro { min-width:0; padding:10em 4em 6em; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:3em; }
+.ef-contact-intro h1 { width:100%; max-width:5em; }
+.ef-contact-intro > h1 + p { margin-top:-.5em; }
+.ef-contact-actions { display:flex; justify-content:center; flex-wrap:wrap; gap:1em; margin-top:1em; }
+.ef-contact-photo { min-height:100svh; position:relative; overflow:visible; }
+.ef-contact-photo > img:first-child { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; }
+.ef-contact-photo .ef-contact-sticker { width:15em; height:auto; position:absolute; top:18%; left:-8em; rotate:8deg; z-index:2; }
+
+.ef-subsite .ef-faq-page .ef-page-intro { padding-bottom:5.75em; }
+.ef-subsite .ef-faq-page .ef-page-intro h1 { font-size:12em; }
+.ef-faq-groups { width:min(48em,calc(100% - 3em)); margin:auto; padding-bottom:10em; }
+.ef-faq-group { scroll-margin-top:9em; margin-bottom:8em; }
+.ef-faq-group > h2 { text-align:center; font-size:5em; margin-bottom:.65em; }
+.ef-faq-item { margin-bottom:.5em; background:white; }
+.ef-faq-item h3 { font-size:1.25em; font-weight:500; letter-spacing:-.035em; }
+.ef-faq-item h3 button { display:flex; align-items:center; justify-content:space-between; gap:1.5em; text-align:left; padding:.8em 1.2em; width:100%; line-height:1.2; }
+.ef-faq-item h3 svg { width:1.6em; height:1.6em; padding:.25em; background:var(--ef-paper); flex-shrink:0; transition:rotate .4s ease,background .3s; }
+.ef-faq-item[data-open="true"] h3 svg { rotate:180deg; background:#dce3ff; }
+.ef-faq-panel { display:grid; grid-template-rows:0fr; visibility:hidden; transition:grid-template-rows .45s cubic-bezier(.2,.75,.15,1),visibility .45s; }
+.ef-faq-panel > div { min-height:0; overflow:hidden; }
+.ef-faq-panel p { font-size:1.25em; padding:0 1.2em 1.2em; text-wrap:pretty; }
+.ef-faq-item[data-open="true"] .ef-faq-panel { grid-template-rows:1fr; visibility:visible; }
+.ef-faq-dock { position:fixed; z-index:80; left:50%; bottom:2em; transform:translateX(-50%); max-width:calc(100vw - 2em); transition:opacity .3s,translate .3s; }
+.ef-faq-dock[data-visible="false"] { opacity:0; translate:0 3em; pointer-events:none; }
+.ef-faq-dock > button { display:flex; gap:1em; align-items:center; background:#dbe2ff; color:var(--ef-blue); padding:1em 1.5em; border-radius:3em; font-weight:700; white-space:nowrap; font-size:1.1em; }
+.ef-faq-dock > nav { position:absolute; bottom:calc(100% + .75em); left:50%; transform:translateX(-50%); background:#dbe2ff; padding:.5em; border-radius:1em; width:26em; max-width:calc(100vw - 2em); max-height:65svh; overflow:auto; }
+.ef-faq-dock > nav a { display:block; padding:.7em 1em; border-radius:.5em; }
+.ef-faq-dock > nav a[aria-current],.ef-faq-dock > nav a:hover { background:var(--ef-blue); color:white; }
+
+.ef-case-hero,.ef-case-step { display:grid; grid-template-columns:1fr 1fr; min-height:100svh; }
+.ef-case-intro { display:flex; flex-direction:column; align-items:center; justify-content:space-between; text-align:center; padding:17em 12% 2em; gap:4em; min-width:0; }
+.ef-case-intro .ef-eyebrow { font-size:2em; }
+.ef-case-intro h1 { font-size:12em; max-width:100%; overflow-wrap:break-word; }
+.ef-case-hero .ef-case-image { aspect-ratio:1; overflow:hidden; }
+.ef-case-hero .ef-case-image img { width:100%; height:100%; object-fit:cover; }
+@media (min-width:992px) { .ef-case-intro h1 { position:relative; top:-.45em; } }
+.ef-case-intro h1.ef-case-title-long { font-size:8em; }
+.ef-case-intro h1 .ef-reveal-word { white-space:normal; }
+.ef-case-intro .ef-copy { max-width:30em; text-wrap:pretty; }
+.ef-case-media { min-width:0; background:var(--case-color,var(--ef-blue)); padding:6em 8em; display:flex; justify-content:center; align-items:center; }
+.ef-case-image { width:100%; }
+.ef-case-image img { width:100%; max-height:76svh; height:auto; object-fit:contain; }
+.ef-case-step-copy { display:flex; flex-direction:column; justify-content:center; text-align:center; gap:2em; padding:7em 10%; }
+.ef-case-step-copy .ef-heading-l { font-size:5.5em; }
+.ef-case-step-copy .ef-copy { text-wrap:pretty; }
+.ef-more-work { padding:10em 6.8em; text-align:center; }
+.ef-more-work > h2 { margin-bottom:.7em; }
+.ef-more-work-links { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2em; margin-bottom:4em; }
+.ef-more-work-links .ef-work-tile-copy strong { font-size:3.5em; }
+.ef-more-work-links .ef-work-tile-copy small { font-size:2em; }
+.ef-subsite .ef-legal-page .ef-page-intro h1 { max-width:8em; }
+.ef-legal-page .ef-page-lead { font-size:1.5em; }
+.ef-legal-copy { width:min(64em,calc(100% - 3em)); margin:auto; padding:2em 0 10em; }
+.ef-legal-copy h2 { font-size:2.5em; line-height:1.15; margin:2em 0 .75em; }
+.ef-legal-copy p,.ef-legal-copy ul,.ef-legal-copy ol { font-size:1.25em; margin:1em 0; text-wrap:pretty; }
+.ef-legal-copy ul,.ef-legal-copy ol { padding-left:1.5em; }
+.ef-legal-copy ul { list-style:disc; }
+.ef-legal-copy ol { list-style:decimal; }
+.ef-legal-copy li { margin-block:.4em; }
+
+@media (max-width:991px) {
+  .ef-subsite .ef-page-intro { padding:9em 1.5em 4em; }
+  .ef-subsite .ef-about-page .ef-page-intro { padding-top:10em; min-height:82svh; }
+  .ef-subsite .ef-about-page .ef-page-intro h1,.ef-subsite .ef-services-hero h1 { font-size:6.5em; }
+  .ef-subsite .ef-page-lead { font-size:2em; }
+  .ef-about-team { padding:4em 3em 8em; gap:3em; }
+  .ef-about-team-title { grid-column:1/-1; padding:0 0 3em; }
+  .ef-about-sticker { width:7em; left:auto; right:0; top:-3em; }
+  .ef-person:nth-of-type(even) { margin-top:6em; }
+  .ef-work-grid { grid-template-columns:repeat(2,minmax(0,1fr)); padding:0 2em 7em; }
+  .ef-work-grid > :nth-child(n) { margin-top:0; }
+  .ef-work-grid > :nth-child(even) { margin-top:5em; }
+  .ef-work-tile-copy strong { font-size:3em; }
+  .ef-work-tile-copy small { font-size:1.8em; }
+  .ef-orbit-item { width:7em; height:7em; }
+  .ef-services-statement { padding:8em 2em; }
+  .ef-services-statement > p:first-child { font-size:3em; }
+  .ef-service-detail { min-height:auto; }
+  .ef-service-detail-copy { padding:5em 2em; }
+  .ef-service-detail-copy .ef-heading-xl { font-size:4.5em; }
+  .ef-service-film-wrap { padding:3em; }
+  .ef-contact-intro { padding-inline:2em; }
+  .ef-contact-intro h1 { font-size:5.5em; }
+  .ef-case-intro { padding:10em 2em 3em; }
+  .ef-case-intro h1 { font-size:7em; }
+  .ef-case-intro h1.ef-case-title-long { font-size:5em; }
+  .ef-case-media { padding:4em; }
+  .ef-case-step-copy .ef-heading-l { font-size:4em; }
+  .ef-more-work { padding:6em 2em; }
+  .ef-subsite .ef-faq-page .ef-page-intro h1 { font-size:8em; }
+  .ef-faq-group > h2 { font-size:4em; }
+}
+@media (max-width:767px) {
+  .ef-subsite footer { padding-inline:1.5em; }
+  .ef-subsite .ef-page-intro { padding:9em 1.5em 4em; }
+  .ef-subsite .ef-about-page .ef-page-intro { padding-top:9em; min-height:80svh; }
+  .ef-subsite .ef-about-page .ef-page-intro h1,.ef-subsite .ef-services-hero h1 { font-size:4em; }
+  .ef-subsite .ef-page-lead { font-size:1.75em; line-height:1.08; max-width:20em; }
+  .ef-subsite .ef-page-intro-content { gap:1.5em; }
+  .ef-about-team { grid-template-columns:1fr; padding:3em max(1.5em,12.5vw) 6em; gap:3em; }
+  .ef-about-team-title { grid-column:auto; padding-bottom:1em; }
+  .ef-about-team-title h2 { font-size:4em; }
+  .ef-about-sticker { width:5em; right:-2em; top:-3em; }
+  .ef-person:nth-of-type(n) { margin:0; }
+  .ef-person-caption h3 { font-size:1.5em; }
+  .ef-person-caption p { font-size:1.6em; }
+  .ef-work-grid { grid-template-columns:1fr; padding:0 2em 6em; gap:3em; }
+  .ef-work-grid > :nth-child(n) { margin:0; }
+  .ef-work-card { padding:1em; }
+  .ef-work-tile-copy strong { font-size:3em; }
+  .ef-work-tile-copy small { font-size:1.75em; }
+  .ef-subsite .ef-work-page .ef-page-intro h1 { font-size:4em; }
+  .ef-orbit-item { width:4.8em; height:4.8em; }
+  .ef-services-hero,.ef-subsite .ef-services-hero .ef-page-intro { min-height:100svh; }
+  .ef-services-hero .ef-page-intro-content { width:100%; }
+  .ef-services-hero .ef-page-lead { max-width:14em; }
+  .ef-services-statement { padding:6em 1.5em 8em; }
+  .ef-services-statement > p:first-child { font-size:2em; }
+  .ef-service-detail { grid-template-columns:1fr; }
+  .ef-service-detail-copy { padding:4em 1.5em; gap:1.5em; }
+  .ef-service-detail-copy .ef-eyebrow { font-size:1.75em; }
+  .ef-service-detail-copy .ef-heading-xl { font-size:3.5em; }
+  .ef-service-sticker { width:9em; height:6em; margin:0 0 1em; }
+  .ef-service-detail-image { min-height:0; }
+  .ef-service-film-wrap { height:auto; min-height:75svh; position:relative; padding:3em; }
+  .ef-service-film { max-width:27em; }
+  .ef-contact-hero { grid-template-columns:1fr; }
+  .ef-contact-intro { padding:9em 2em 4em; min-height:80svh; gap:2em; }
+  .ef-contact-intro h1 { font-size:4.5em; }
+  .ef-contact-photo { min-height:80svh; overflow:hidden; }
+  .ef-contact-photo .ef-contact-sticker { top:2em; left:1em; width:10em; }
+  .ef-contact-actions { margin-top:0; }
+  .ef-case-hero,.ef-case-step { grid-template-columns:1fr; min-height:0; }
+  .ef-case-intro { padding:9em 1.5em 4em; min-height:80svh; gap:3em; }
+  .ef-case-intro h1 { font-size:5em; }
+  .ef-case-intro h1.ef-case-title-long { font-size:4em; }
+  .ef-case-intro .ef-eyebrow { font-size:1.75em; }
+  .ef-case-media { min-height:65svh; padding:3em; }
+  .ef-case-image { width:100%; max-width:28em; }
+  .ef-case-image img { max-height:none; }
+  .ef-case-step-copy { padding:5em 1.5em; gap:1.5em; }
+  .ef-case-step-copy .ef-heading-l { font-size:3.5em; }
+  .ef-more-work { padding:6em 2em; }
+  .ef-more-work-links { grid-template-columns:1fr; gap:3em; }
+  .ef-more-work-links .ef-work-tile-copy strong { font-size:3em; }
+  .ef-more-work-links .ef-work-tile-copy small { font-size:1.75em; }
+  .ef-subsite .ef-faq-page .ef-page-intro h1 { font-size:5em; }
+  .ef-faq-group > h2 { font-size:3em; }
+  .ef-faq-item h3,.ef-faq-panel p { font-size:1.1em; }
+  .ef-faq-dock { bottom:1em; }
+  .ef-faq-dock > button { max-width:calc(100vw - 2em); white-space:normal; text-align:left; font-size:1em; }
+  .ef-subsite .ef-legal-page h1 { font-size:3.5em; }
+  .ef-subsite .ef-legal-page .ef-page-lead { font-size:1.25em; }
+  .ef-legal-copy { padding:0 0 6em; }
+  .ef-legal-copy h2 { font-size:2em; }
+  .ef-legal-copy p,.ef-legal-copy ul,.ef-legal-copy ol { font-size:1.15em; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .ef-subsite .ef-work-card,.ef-subsite .ef-work-image img { transition:none; }
+}
