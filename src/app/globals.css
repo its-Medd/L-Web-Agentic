@@ -56,12 +56,11 @@ img { display:block; }
 .ef-text-link:hover .ef-arrow { translate:2px 0; }
 .ef-skip { position:fixed; top:0; left:1em; z-index:1000; padding:1em; color:white; background:var(--ef-blue); transform:translateY(-150%); }
 .ef-skip:focus { transform:none; }
-.ef-transition { position:fixed; inset:0; z-index:90; pointer-events:none; overflow:hidden; color:var(--ef-blue); }
+.ef-transition { position:fixed; inset:0; z-index:90; pointer-events:none; overflow:hidden; color:var(--ef-blue); contain:layout paint; }
 .ef-transition svg { position:absolute; width:130%; height:130%; top:-15%; left:-15%; overflow:visible; }
 .ef-transition path { fill:none; stroke:var(--ef-blue); stroke-width:300; stroke-dasharray:5000; stroke-dashoffset:0; stroke-linecap:round; stroke-linejoin:round; animation:ef-blue-snake-reveal 1.25s .35s cubic-bezier(.45,0,.55,1) forwards; }
 @keyframes ef-blue-snake-reveal { to { stroke-width:50; stroke-dashoffset:5000; } }
 @media (prefers-reduced-motion: reduce) { .ef-transition { display:none; } .ef-transition path { animation:none; } }
-body:has(.ef-transition) .ef-nav { visibility:hidden; }
 .ef-nav { position:fixed; inset:0 0 auto; z-index:100; }
 .ef-nav-inner { display:flex; align-items:center; justify-content:space-between; padding:1em 2em 0; position:relative; }
 .ef-nav-logo { display:flex; width:10em; padding-top:.5em; position:relative; }
@@ -75,7 +74,7 @@ body:has(.ef-transition) .ef-nav { visibility:hidden; }
 .ef-desktop-links { position:absolute; left:50%; transform:translateX(-50%); display:flex; align-items:flex-start; gap:1.5em; padding:.6125em 1.25em 0; height:3em; background:white; }
 .ef-desktop-links a { display:flex; align-items:flex-start; padding-top:.18em; height:2em; font-variation-settings:"wght" 700,"wdth" 75,"opsz" 30; text-transform:uppercase; letter-spacing:0; position:relative; white-space:nowrap; }
 .ef-desktop-links a::after { content:""; position:absolute; left:0; bottom:.35em; width:100%; height:.3em; background:url("/sites/extrafazant/underline-2-blue.svg") center/100% 100% no-repeat; opacity:0; }
-.ef-desktop-links a:hover::after { opacity:1; }
+.ef-desktop-links a:hover::after,.ef-desktop-links a[aria-current="page"]::after { opacity:1; }
 .ef-contact-link { display:inline-flex; align-items:center; justify-content:center; gap:.375em; padding:.75em; height:2.5em; background:white; color:var(--ef-ink); font-variation-settings:"wght" 700,"wdth" 75,"opsz" 30; letter-spacing:-.02em; text-transform:uppercase; }
 .ef-contact-link > span { width:.5em; height:.5em; border-radius:50%; background:var(--ef-blue); transition:scale .3s; }
 .ef-contact-link:hover > span { scale:1.6; }
@@ -182,7 +181,14 @@ body:has(.ef-transition) .ef-nav { visibility:hidden; }
   .ef-page-pad { padding-inline:0; } .ef-section-pad { padding-block:5.5em; }
   .ef-heading-xl { font-size:4.75em; } .ef-heading-l { font-size:3.75em; }
   .ef-hero-heading { font-size:5.5em; } .ef-hero-subtitle { font-size:2em; } .ef-hero-card { top:-1.5em; }
-  .ef-nav-inner { padding-inline:1.5em; } .ef-nav-logo { width:9em; }
+  .ef-nav-inner { align-items:flex-start; gap:.5em; padding:.75em 1em 0; }
+  .ef-nav-logo { width:6em; padding-top:.35em; flex:none; }
+  .ef-desktop-links { position:static; left:auto; transform:none; flex:1; justify-content:space-evenly; gap:0; height:2.4em; padding:.45em .5em 0; background:var(--ef-paper); }
+  .ef-desktop-links a { height:1.7em; padding-top:.08em; font-size:.95em; }
+  .ef-contact-link,.ef-menu-toggle { display:none; }
+  .ef-route-transition:not([data-phase="idle"]) { display:block; }
+  .ef-route-transition .ef-transition-backdrop { background:var(--ef-blue); }
+  .ef-route-transition path { stroke-width:340; }
   .ef-intro-large { width:22em; } .ef-intro-small { width:16em; } .ef-intro-sticker { width:14em; top:6em; right:12em; } .ef-intro-grid { gap:3em; }
   .ef-featured-viewport { padding-top:4em; padding-bottom:2em; } .ef-project-slide { width:min(86vw,40em); } .ef-project-card { padding:1em; } .ef-project-card h3 { font-size:3.5em; }
   .ef-services { height:100svh; min-height:100svh; justify-content:space-between; gap:0; overflow:hidden; padding-block:4.5em; }
@@ -199,12 +205,9 @@ body:has(.ef-transition) .ef-nav { visibility:hidden; }
   .ef-page-pad { padding-inline:0; } .ef-section-pad { padding-block:4.75em; }
   .ef-heading-xl { font-size:3.5em; } .ef-heading-l { font-size:2.75em; }
   .ef-eyebrow { font-size:1.75em; } .ef-eyebrow-small { font-size:1.5em; } .ef-copy { font-size:1.125em; }
-  .ef-nav-inner { height:4em; padding:1em 1em 0; } .ef-nav-logo { width:9em; padding-top:1em; }
-  .ef-nav .ef-contact-link,.ef-desktop-links { display:none; }
-  .ef-menu-toggle { display:flex; align-items:center; justify-content:center; flex-direction:column; gap:.4em; background:var(--ef-ink); width:3em; height:3em; flex-shrink:0; }
-  .ef-menu-toggle span { width:1.5em; height:1px; background:white; }
-  .ef-menu-close { position:absolute; top:1em; right:1em; z-index:1; }
-  .ef-menu-close span:first-child { transform:translateY(.24em) rotate(45deg); } .ef-menu-close span:last-child { transform:translateY(-.24em) rotate(-45deg); }
+  .ef-nav-inner { height:auto; padding-top:.65em; } .ef-nav-logo { width:5.75em; padding-top:.3em; }
+  .ef-desktop-links { height:2.3em; padding:.45em .35em 0; }
+  .ef-desktop-links a { font-size:.9em; }
   .ef-hero-stage { padding-inline:1.25em; } .ef-hero-card { width:14em; height:14em; } .ef-hero-heading { font-size:4em; } .ef-hero-subtitle { font-size:1.75em; }
   .ef-client { width:7em; height:7em; margin-inline:1em; }
   .ef-intro-large { width:18em; left:-4em; } .ef-intro-small { width:14em; right:1em; } .ef-intro-sticker { width:12em; top:3em; right:6em; }
@@ -229,6 +232,5 @@ body:has(.ef-transition) .ef-nav { visibility:hidden; }
 .ef-route-transition[data-phase="idle"] { display:none; }
 .ef-route-transition path { animation:none; }
 .ef-transition-backdrop { position:absolute; inset:0; background:var(--ef-blue); }
-body:has(.ef-route-transition[data-phase="idle"]) .ef-nav { visibility:visible; }
 html[data-ef-transitioning] .ef-nav { visibility:hidden !important; }
 @media (prefers-reduced-motion:reduce) { .ef-route-transition { display:none !important; } body:has(.ef-transition) .ef-nav { visibility:visible; } }

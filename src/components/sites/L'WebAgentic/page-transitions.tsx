@@ -52,14 +52,15 @@ export function PageTransitions({ children }: { children: ReactNode }) {
     }
     element.dataset.phase = "enter";
     lock(true);
-    const delay = first.current ? 0.35 : 0.1;
+    const mobile = window.matchMedia("(max-width: 767px)").matches;
+    const delay = first.current ? (mobile ? 0.2 : 0.35) : 0.1;
     first.current = false;
     timeline.current = gsap.timeline({ onComplete: finish })
       .set(backdrop, { opacity: 1 })
       .set(path, { strokeDasharray: 5000, strokeDashoffset: 0, strokeWidth: 300 })
       .set(backdrop, { opacity: 0 }, delay)
       .call(() => { document.dispatchEvent(new Event("ef-page-reveal")); }, [], delay)
-      .to(path, { strokeDashoffset: 5000, strokeWidth: 50, duration: 1.25, ease: "power1.inOut" }, delay);
+      .to(path, { strokeDashoffset: 5000, strokeWidth: 50, duration: mobile ? 1.1 : 1.25, ease: "power1.inOut" }, delay);
     return () => { timeline.current?.kill(); lock(false); };
   }, [pathname]);
 
@@ -123,5 +124,8 @@ export function PageTransitions({ children }: { children: ReactNode }) {
     };
   }, [router]);
 
-  return <>{children}<div ref={overlay} className="ef-transition ef-route-transition" data-phase="enter" aria-hidden="true"><div className="ef-transition-backdrop" /><svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><path d={snakePath} /></svg></div></>;
+  // Start hidden on the server. This prevents a slow or interrupted mobile
+  // hydration from leaving the page behind the blue transition layer.
+  // useLayoutEffect switches it to "enter" before the client paints.
+  return <>{children}<div ref={overlay} className="ef-transition ef-route-transition" data-phase="idle" aria-hidden="true"><div className="ef-transition-backdrop" /><svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><path d={snakePath} /></svg></div></>;
 }

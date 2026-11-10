@@ -99,8 +99,10 @@ export function useSiteMotion(rootRef: RefObject<HTMLDivElement | null>) {
     const nav = root.querySelector<HTMLElement>("[data-ef-nav]"), darkSections = [...root.querySelectorAll<HTMLElement>("[data-ef-dark]")];
     const updateTheme = () => { const line = nav?.offsetHeight ?? 64; const dark = darkSections.some((section) => { const box = section.getBoundingClientRect(); return box.top <= line && box.bottom > line; }); if (nav) nav.dataset.dark = String(dark); };
     window.addEventListener("scroll", updateTheme, { passive: true }); updateTheme();
+    const refreshMotion = () => { ScrollTrigger.refresh(); lenis?.resize(); updateTheme(); };
+    document.addEventListener("ef-page-ready", refreshMotion);
     let alive = true;
-    void document.fonts.ready.then(() => { if (alive) { ScrollTrigger.refresh(); lenis?.resize(); } });
-    return () => { alive = false; window.removeEventListener("scroll", updateTheme); document.removeEventListener("ef-menu-toggle", menuToggle); document.removeEventListener("ef-route-state", syncScroll); media.revert(); context.revert(); gsap.ticker.remove(tick); lenis?.destroy(); };
+    void document.fonts.ready.then(() => { if (alive) refreshMotion(); });
+    return () => { alive = false; window.removeEventListener("scroll", updateTheme); document.removeEventListener("ef-page-ready", refreshMotion); document.removeEventListener("ef-menu-toggle", menuToggle); document.removeEventListener("ef-route-state", syncScroll); media.revert(); context.revert(); gsap.ticker.remove(tick); lenis?.destroy(); };
   }, [rootRef]);
 }

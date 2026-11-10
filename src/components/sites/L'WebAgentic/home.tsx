@@ -19,40 +19,13 @@ const clips = ["odido", "fatboy", "veilig-thuis", "willem-ii"];
 
 export function SiteNavigation() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const toggleRef = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    const close = () => setOpen(false);
-    document.addEventListener("ef-route-start", close);
-    return () => document.removeEventListener("ef-route-start", close);
-  }, []);
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    if (open && !dialog.open) dialog.showModal();
-    if (!open && dialog.open) dialog.close();
-    document.body.classList.toggle("ef-menu-open", open);
-    document.dispatchEvent(new CustomEvent("ef-menu-toggle", { detail: open }));
-    return () => { document.body.classList.remove("ef-menu-open"); };
-  }, [open]);
-  const closeMenu = () => { setOpen(false); toggleRef.current?.focus(); };
-  return <>
-    <header className="ef-nav" data-ef-nav><div className="ef-nav-inner">
+  return <header className="ef-nav" data-ef-nav><div className="ef-nav-inner">
       <Link className="ef-nav-logo" href="/" aria-label="L'Web agentic — naar boven">
         <BrandMark />
       </Link>
       <nav className="ef-desktop-links" aria-label="Hoofdnavigatie">{navigation.map(([label, path]) => <a href={siteOrigin + path} key={path} aria-current={pathname === path || pathname.startsWith(path + "/") ? "page" : undefined}>{label}</a>)}</nav>
       <a href={siteOrigin + "/contact"} className="ef-contact-link"><span />Contact</a>
-      <button ref={toggleRef} className="ef-menu-toggle" aria-label="Menu openen" aria-expanded={open} aria-controls="ef-mobile-menu" onClick={() => setOpen(true)}><span /><span /></button>
-    </div></header>
-    <dialog ref={dialogRef} id="ef-mobile-menu" className="ef-mobile-menu" aria-label="Hoofdnavigatie" onCancel={closeMenu} onClose={() => setOpen(false)}>
-      <Link href="/" className="ef-menu-logo" aria-label="L'Web agentic — naar boven" onClick={closeMenu}><BrandMark /></Link>
-      <button className="ef-menu-toggle ef-menu-close" aria-label="Menu sluiten" onClick={closeMenu}><span /><span /></button>
-      <nav className="ef-mobile-links" aria-label="Mobiele hoofdnavigatie">{navigation.map(([label, path]) => <a href={siteOrigin + path} key={path} aria-current={pathname === path || pathname.startsWith(path + "/") ? "page" : undefined}>{label}</a>)}</nav>
-      <a href={siteOrigin + "/contact"} className="ef-contact-link ef-menu-contact"><span />Contact</a>
-    </dialog>
-  </>;
+    </div></header>;
 }
 
 function Word({ text, serif = false }: { text: string; serif?: boolean }) {
@@ -142,7 +115,7 @@ function Hero() {
   }, []);
   return <section id="top" className="ef-hero" ref={heroRef} aria-labelledby="ef-hero-title">
     <div className="ef-hero-stage">
-      <div className="ef-hero-card" ref={cardRef} aria-hidden="true"><video key={clips[clip]} src={assetPath(`hero-${clips[clip]}.mp4`)} poster={assetPath(`hero-${clips[clip]}.avif`)} autoPlay muted loop playsInline preload="auto" /></div>
+      <div className="ef-hero-card" ref={cardRef} aria-hidden="true"><video key={clips[clip]} src={assetPath(`hero-${clips[clip]}.mp4`)} poster={assetPath(`hero-${clips[clip]}.avif`)} autoPlay muted loop playsInline preload="metadata" /></div>
       <div className="ef-hero-content">
         <p className="ef-hero-subtitle">Social content,<br />video&apos;s &amp; animatie</p>
         <h1 id="ef-hero-title" className="ef-hero-heading" aria-label="Brengt je merk in beweging"><span aria-hidden="true"><Word text="Brengt" /> <Word text="je" /> <Word text="merk" /><br /><Word text="in" /> <Word text="beweging" serif /></span></h1>

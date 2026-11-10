@@ -33,7 +33,7 @@ export function SiteImage({
       alt={alt}
       width={width}
       height={height}
-      unoptimized
+      sizes="(max-width: 767px) 100vw, (max-width: 991px) 80vw, 50vw"
       priority={priority}
       className={className}
       style={style}
